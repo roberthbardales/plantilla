@@ -8,18 +8,21 @@
       <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav me-auto mx-2 px-2">
           <li class="nav-item">
-            <a class="nav-link text-light" href="">Inicio
+            <a class="nav-link text-light" href="{% url 'portafolio_app:home' %}">Inicio
               <span class="visually-hidden">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" href="#">Portafolio</a>
+            <a class="nav-link text-light" href="{% url 'portafolio_app:list' %}">Portafolio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" href="#">Sobre mi</a>
+            <a class="nav-link text-light" href="{% url 'portafolio_app:add' %}">Sobre mi</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" href="#">Contacto</a>
+            <a class="nav-link text-light" href="{% url 'portafolio_app:update' %}">Contacto</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="{% url 'portafolio_app:delete' %}">Blog</a>
           </li>
 
         </ul>
