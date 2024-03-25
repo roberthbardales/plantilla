@@ -8,7 +8,7 @@
 {% include "includes/header.html" %}
 
     <div class="row ventana text-center py-3">
-        <form action="" method="POST" class="">
+        <form action="" method="POST" class="">{% csrf_token %}
             <h1 class="display-6">¿Desea eliminar el siguiente registro?</h1>
             <div class="mt-4">
                 <button type="submit" class="btn btn-danger">Confirmar</button>
