@@ -42,7 +42,7 @@ urlpatterns = [
         views.ListarProyectoByKword.as_view(),
         name='buscar_proyecto',
     ),
-# ---------------P R U E B A S-----------------------
+# ---------------PRUEBAS INICIO-----------------------
     path(
         'proyecto_etiqueta/<int:etiqueta_id>/',
         views.ProyectosPorEtiquetaListView.as_view(),
@@ -52,7 +52,59 @@ urlpatterns = [
          views.EtiquetaDetailView.as_view(),
          name='etiqueta_detail'),
 
-# ---------------P R U E B A S-----------------------
+# ---------------PRUEBAS FIN-----------------------
+# ----------------SERIALIZERS------------------
+    path(
+        'api/project/lista/',
+        views.ProjectListApiView.as_view(),
+        name='project_list'
+    ),
+    path(
+        'api/project/create/',
+        views.ProjectCreateAPIView.as_view(),
+        name='project_create'
+    ),
+    path(
+        'api/project/detail/<pk>/',
+        views.ProjectDetailView.as_view(),
+        name='project_detail'
+    ),
+    path(
+        'api/project/delete/<pk>/',
+        views.ProjectDeleteView.as_view(),
+        name='project_delete'
+    ),
+    path(
+        'api/project/update/<pk>/',
+        views.ProjectUpdateView.as_view(),
+        name='project_update'
+    ),
+    path(
+        'api/project/modificar/<pk>/',
+        views.ProjectRetrieveUpdateAPIView.as_view(),
+        name='project_modificar'
+    ),
+    path(
+        'api/proyectos2/',
+        views.Project2ApiLista.as_view(),
+        name='api_proyectos2'
+    ),
+    path(
+        'api/tag_link/',
+        views.ProjectApilistaLink.as_view(),
+        name='api_tag_link'
+    ),
+    path(
+        'api/proyectos/paginacion/',
+        views.ProjectPaginationList.as_view(),
+        name=''
+    ),
+        path(
+        'api/totalbycategoria/',
+        views.ProjectByCategory.as_view(),
+        name=''
+    ),
+
 
 
 

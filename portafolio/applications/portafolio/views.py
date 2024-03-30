@@ -1,3 +1,5 @@
+
+
 from django.db.models.query import QuerySet
 from django.shortcuts import render
 
@@ -5,6 +7,7 @@ from django.urls import reverse_lazy,reverse
 from django.db.models import Q
 # Create your views here.
 from . import views
+
 
 from django.views.generic import (
     ListView,
@@ -18,6 +21,25 @@ from django.views.generic import (
 from .forms import ProjectForm
 from .managers import *
 from .models import Tag,Project,Category
+
+from .serializers import (
+    Project,
+    Project2Serializer,
+    ProjectSerializerLink,
+    PersonPagination,
+    ProjectSerializer,
+    CountReunionSerializer,
+)
+
+from rest_framework.generics import (
+    ListAPIView,
+    CreateAPIView,
+    RetrieveAPIView,  #equivalente al Detailview
+    DestroyAPIView,
+    UpdateAPIView,
+    RetrieveUpdateAPIView,  #update pero viendo los campos
+)
+
 
 class PaginaInicio(TemplateView):
     template_name = "index.html"
@@ -139,6 +161,86 @@ class EtiquetaDetailView(DetailView):
 
 
 
+# ------ SERIALIZERS -------------
+class ProjectListApiView(ListAPIView):
+    serializer_class=ProjectSerializer
+    def get_queryset(self):
+        return Project.objects.all()
+
+
+class ProjectCreateAPIView(CreateAPIView):
+    serializer_class= ProjectSerializer
+
+
+class ProjectDetailView(RetrieveAPIView):
+
+    serializer_class= ProjectSerializer
+    queryset= Project.objects.all() #en vez de all se puede poner el filter
+
+class ProjectDeleteView(DestroyAPIView):
+
+    serializer_class= ProjectSerializer
+    queryset= Project.objects.all()
+
+class ProjectUpdateView(UpdateAPIView):
+
+    serializer_class= ProjectSerializer
+    queryset= Project.objects.all()
+
+class ProjectRetrieveUpdateAPIView(RetrieveUpdateAPIView):
+
+    serializer_class= ProjectSerializer
+    queryset= Project.objects.all() #en vez de all se puede poner el filter
+
+
+class Project2ApiLista(ListAPIView):
+    # serializer_class= PersonaSerializer
+    serializer_class= Project2Serializer
+
+    def get_queryset(self):
+        return Project.objects.all()
+
+
+class ProjectApilistaLink(ListAPIView):
+
+    # serializer_class= PersonaSerializer
+    serializer_class= ProjectSerializerLink
+
+    def get_queryset(self):
+        return Project.objects.all()
+
+class ProjectPaginationList(ListAPIView):
+
+    serializer_class= ProjectSerializer
+    pagination_class= PersonPagination
+
+    def get_queryset(self):
+        return Project.objects.all()
+
+class ProjectByCategory(ListAPIView):
+
+    serializer_class=CountReunionSerializer
+    def get_queryset(self):
+        return Project.objects.total_proyecto_categoria()
+
+
+
+
+
+
+# ------ SERIALIZERS -------------
+
+
+
+
+
+
+#=========PRUEBAS==========
+
+#=========PRUEBAS==========
+
+
+
 
 # #basado en funciones
 # def home(request):
@@ -158,4 +260,9 @@ class EtiquetaDetailView(DetailView):
 
 # def delete(request):
 #     return render(request,'delete.html')
+
+
+
+
+
 
